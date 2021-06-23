@@ -31,5 +31,5 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/webp --with-jpeg=/u
         && docker-php-ext-install -j$(nproc) gd
 # enable opcache
 RUN docker-php-ext-enable opcache
-RUN  rm -rf /var/cache/apk/*d
+RUN  rm -rf /var/cache/apk/*
 EXPOSE 80 443
