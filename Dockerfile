@@ -13,6 +13,7 @@ ENV PATH="/root/.composer/vendor/laravel/installer/bin:$PATH"
 RUN apk add --no-cache --update --virtual .phpize-deps $PHPIZE_DEPS
 RUN apk add libpng-dev freetype-dev libjpeg-turbo-dev gettext-dev
 RUN apk add --no-cache --update zlib
+RUN apk add --no-cache --update nginx
 
 RUN docker-php-ext-install bcmath calendar exif gettext && \
     docker-php-ext-install sockets dba mysqli pcntl pdo_mysql shmop sysvmsg sysvsem sysvshm
@@ -30,5 +31,5 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/webp --with-jpeg=/u
         && docker-php-ext-install -j$(nproc) gd
 # enable opcache
 RUN docker-php-ext-enable opcache
-RUN  rm -rf /var/cache/apk/*
+RUN  rm -rf /var/cache/apk/*d
 EXPOSE 80 443
