@@ -1,9 +1,8 @@
 # image about Laravel with php and nginx
 
 ## dockerfile
-    FROM php:8.0-fpm-alpine
+    FROM stormliang/phpfpm8-laravel8.5
     LABEL maintainer="stormliang"
-    laravel new {$project_name}
     WORKDIR /var/www/{$project_name}
     COPY . /var/www/{$project_name}
     # {start service}
@@ -16,8 +15,7 @@
     nginx
     ADD nginx.conf /etc/nginx/nginx.conf
 ### [VERSION]
-    php-fpm:8.0 and laravel:8.5
-
+    php-fpm:8.0 and composer update
 ### [PHP Modules]
     bcmath
     calendar
@@ -70,6 +68,7 @@
     xmlwriter
     Zend OPcache
     zlib
+    zip
 
 ### [Zend Modules]
     Zend OPcache
