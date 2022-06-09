@@ -35,4 +35,11 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/webp --with-jpeg=/u
 # enable opcache
 RUN docker-php-ext-enable opcache
 RUN  rm -rf /var/cache/apk/*
+
+
+RUN rm -rf /usr/local/etc/php-fpm.conf*
+COPY php-fpm.conf /usr/local/etc/php-fpm.conf
+
+RUN rm -rf /usr/local/etc/php/php.ini*
+COPY php.ini /usr/local/etc/php/php.ini
 EXPOSE 80 443
