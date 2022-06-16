@@ -9,7 +9,7 @@ RUN curl https://getcomposer.org/installer|php
 RUN mv composer.phar /usr/local/bin/composer
 # install exif mysqli pdo_mysql
 RUN apk add --no-cache --update --virtual .phpize-deps $PHPIZE_DEPS
-RUN apk add libpng-dev freetype-dev libjpeg-turbo-dev gettext-dev
+RUN apk add openssl libpng-dev openssl-dev freetype-dev libjpeg-turbo-dev gettext-dev
 RUN apk add --no-cache --update zlib
 RUN apk add --no-cache --update nginx
 RUN apk add libzip-dev 
@@ -29,6 +29,9 @@ RUN pecl search swoole && pecl install swoole \
     && docker-php-ext-enable inotify
 
 RUN docker-php-ext-install simplexml
+
+RUN pecl install -o -f mongodb && echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini
+
 # install gd
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/webp --with-jpeg=/usr/include/  \
         && docker-php-ext-install -j$(nproc) gd
