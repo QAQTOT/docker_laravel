@@ -43,6 +43,9 @@ RUN  rm -rf /var/cache/apk/*
 RUN rm -rf /usr/local/etc/php-fpm.conf*
 COPY php-fpm.conf /usr/local/etc/php-fpm.conf
 
+RUN rm -rf /usr/local/etc/php-fpm.d/*
+COPY php-fpm/ /usr/local/etc/php-fpm.d/
+
 RUN rm -rf /usr/local/etc/php/php.ini*
 COPY php.ini /usr/local/etc/php/php.ini
 EXPOSE 80 443
